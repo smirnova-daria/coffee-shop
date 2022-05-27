@@ -70,9 +70,9 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="best__wrapper">
-                            <card-component />
-                            <card-component />
-                            <card-component />
+                            <product-card />
+                            <product-card />
+                            <product-card />
                         </div>
                     </div>
                 </div>
@@ -83,8 +83,8 @@
 
 <script>
 import NavBarComponent from '@/components/NavBarComponent.vue'
-import CardComponent from '@/components/CardComponent.vue'
+import ProductCard from '@/components/ProductCard.vue'
 export default {
-    components: { NavBarComponent, CardComponent },
+    components: { NavBarComponent, ProductCard },
 }
 </script>
