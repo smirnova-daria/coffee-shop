@@ -7,7 +7,7 @@
                         <nav-bar-component />
                     </div>
                 </div>
-                <h1 class="title-big">Our Coffee</h1>
+                <header-title-component :title="headerTitle" />
             </div>
         </div>
         <section class="shop">
@@ -73,12 +73,42 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="shop__wrapper">
-                            <product-card />
-                            <product-card />
-                            <product-card />
-                            <product-card />
-                            <product-card />
-                            <product-card />
+                            <product-card
+                                classItem="shop__item"
+                                :name="coffee[0].name"
+                                :price="coffee[0].price"
+                                :image="coffee[0].image"
+                            />
+                            <product-card
+                                classItem="shop__item"
+                                :name="coffee[1].name"
+                                :price="coffee[1].price"
+                                :image="coffee[1].image"
+                            />
+                            <product-card
+                                classItem="shop__item"
+                                :name="coffee[2].name"
+                                :price="coffee[2].price"
+                                :image="coffee[2].image"
+                            />
+                            <product-card
+                                classItem="shop__item"
+                                :name="coffee[3].name"
+                                :price="coffee[3].price"
+                                :image="coffee[3].image"
+                            />
+                            <product-card
+                                classItem="shop__item"
+                                :name="coffee[4].name"
+                                :price="coffee[4].price"
+                                :image="coffee[4].image"
+                            />
+                            <product-card
+                                classItem="shop__item"
+                                :name="coffee[5].name"
+                                :price="coffee[5].price"
+                                :image="coffee[5].image"
+                            />
                         </div>
                     </div>
                 </div>
@@ -90,10 +120,12 @@
 <script>
 import NavBarComponent from '@/components/NavBarComponent.vue'
 import ProductCard from '@/components/ProductCard.vue'
+import HeaderTitleComponent from '@/components/HeaderTitleComponent.vue'
 export default {
-    components: { NavBarComponent, ProductCard },
+    components: { NavBarComponent, ProductCard, HeaderTitleComponent },
     data() {
         return {
+            headerTitle: 'Our Coffee',
             coffee: [
                 {
                     id: 0,

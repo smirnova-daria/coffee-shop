@@ -7,7 +7,7 @@
                         <nav-bar-component />
                     </div>
                 </div>
-                <h1 class="title-big">Our Coffee</h1>
+                <header-title-component :title="headerTitle" />
             </div>
         </div>
 
@@ -56,5 +56,10 @@ import NavBarComponent from '@/components/NavBarComponent.vue'
 
 export default {
     components: { NavBarComponent },
+    data() {
+        return {
+            headerTitle: 'Our Coffee',
+        }
+    },
 }
 </script>
