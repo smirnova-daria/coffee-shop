@@ -11,17 +11,17 @@
                     />
                 </router-link>
             </li>
-            <link-item
+            <nav-item
                 :link="links[1].link"
                 :text="links[1].text"
                 classItem="header__item"
             />
-            <link-item
+            <nav-item
                 :link="links[2].link"
                 :text="links[2].text"
                 classItem="header__item"
             />
-            <link-item
+            <nav-item
                 :link="links[3].link"
                 :text="links[3].text"
                 classItem="header__item"
@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import LinkItem from './LinkItem.vue'
+import NavItem from './NavItem.vue'
 export default {
-    components: { LinkItem },
+    components: { NavItem },
     data() {
         return {
             links: [
