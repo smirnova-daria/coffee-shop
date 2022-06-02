@@ -7,7 +7,7 @@
                         <nav-bar-component />
                     </div>
                 </div>
-                <header-title-component :title="headerTitle"/>
+                <header-title-component :title="headerTitle" />
             </div>
         </div>
         <section class="contacts">
@@ -21,7 +21,11 @@
                             alt="Beans logo"
                         />
 
-                        <form action="#" class="mt-5">
+                        <form
+                            action="/"
+                            class="mt-5"
+                            @submit.prevent="submit($event)"
+                        >
                             <div class="form-group row">
                                 <div
                                     class="col col-12 col-sm-3 d-flex align-items-center"
@@ -36,6 +40,7 @@
                                         type="text"
                                         class="form-control"
                                         id="name-input"
+                                        v-model="form.userName"
                                     />
                                 </div>
                             </div>
@@ -54,6 +59,7 @@
                                         type="email"
                                         class="form-control"
                                         id="email-input"
+                                        v-model="form.email"
                                     />
                                 </div>
                             </div>
@@ -71,6 +77,7 @@
                                         type="tel"
                                         class="form-control"
                                         id="phone-input"
+                                        v-model="form.phone"
                                     />
                                 </div>
                             </div>
@@ -94,6 +101,7 @@
                                         id="message"
                                         rows="5"
                                         placeholder="Leave your comments here"
+                                        v-model="form.message"
                                     ></textarea>
                                 </div>
                             </div>
@@ -102,6 +110,7 @@
                                 <div class="col">
                                     <button
                                         class="btn btn-outline-dark send-btn"
+                                        type="submit"
                                     >
                                         Send us
                                     </button>
@@ -123,8 +132,22 @@ export default {
     components: { NavBarComponent, HeaderTitleComponent },
     data() {
         return {
-            headerTitle: 'Contact us'
+            headerTitle: 'Contact us',
+            form: {
+                userName: '',
+                email: '',
+                phone: '',
+                message: '',
+            },
         }
-    }
+    },
+    methods: {
+        submit(event) {
+            console.log(JSON.stringify(this.form))
+            setTimeout(() => {
+                event.target.reset()
+            }, 500)
+        },
+    },
 }
 </script>
