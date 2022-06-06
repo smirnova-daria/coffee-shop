@@ -52,9 +52,8 @@
                                 v-for="good in goods"
                                 :key="good.id"
                                 classItem="shop__item"
-                                :name="good.name"
-                                :price="good.price"
-                                :image="good.image"
+                                :card="good"
+                                @onNavigate="navigate(good.id)"
                             />
                         </div>
                     </div>
@@ -68,6 +67,7 @@
 import NavBarComponent from '@/components/NavBarComponent.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import HeaderTitleComponent from '@/components/HeaderTitleComponent.vue'
+import { navigate } from '@/mixins/navigate'
 
 export default {
     components: { NavBarComponent, ProductCard, HeaderTitleComponent },
@@ -79,7 +79,9 @@ export default {
     data() {
         return {
             headerTitle: 'For your pleasure',
+            name: 'goods',
         }
     },
+    mixins: [navigate],
 }
 </script>
