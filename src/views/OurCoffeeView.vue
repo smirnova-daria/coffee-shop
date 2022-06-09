@@ -54,16 +54,32 @@
                                 type="text"
                                 placeholder="start typing here..."
                                 class="shop__search-input"
+                                @input="onSearch($event)"
                             />
                         </form>
                     </div>
                     <div class="col-lg-4">
                         <div class="shop__filter">
-                            <div class="shop__filter-label">Or filter</div>
+                            <div class="shop__filter-label" @click="onSort('')">
+                                Or filter
+                            </div>
                             <div class="shop__filter-group">
-                                <button class="shop__filter-btn">Brazil</button>
-                                <button class="shop__filter-btn">Kenya</button>
-                                <button class="shop__filter-btn">
+                                <button
+                                    class="shop__filter-btn"
+                                    @click="onSort('Brazil')"
+                                >
+                                    Brazil
+                                </button>
+                                <button
+                                    class="shop__filter-btn"
+                                    @click="onSort('Kenya')"
+                                >
+                                    Kenya
+                                </button>
+                                <button
+                                    class="shop__filter-btn"
+                                    @click="onSort('Columbia')"
+                                >
                                     Columbia
                                 </button>
                             </div>
@@ -94,12 +110,21 @@ import NavBarComponent from '@/components/NavBarComponent.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import HeaderTitleComponent from '@/components/HeaderTitleComponent.vue'
 import { navigate } from '@/mixins/navigate'
+import { debounce } from 'debounce'
 
 export default {
     components: { NavBarComponent, ProductCard, HeaderTitleComponent },
     computed: {
         coffee() {
             return this.$store.getters['getCoffee']
+        },
+        searchValue: {
+            set(value) {
+                this.$store.dispatch('setSearchValue', value)
+            },
+            get() {
+                return this.$store.getters['getSearchValue']
+            },
         },
     },
     data() {
@@ -115,6 +140,22 @@ export default {
             .then((data) => {
                 this.$store.dispatch('setCoffeeData', data)
             })
+    },
+    methods: {
+        onSearch: debounce(function (event) {
+            this.onSort(event.target.value)
+        }, 500),
+        onSort(value) {
+            //Вариант с фильтрацией массива
+            //this.$store.dispatch('setSortValue', value)
+
+            //Вариант с работой сервера
+            fetch(`http://localhost:3000/coffee?q=${value}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    this.$store.dispatch('setCoffeeData', data)
+                })
+        },
     },
 }
 </script>
